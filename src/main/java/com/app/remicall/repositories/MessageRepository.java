@@ -5,8 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-/**
- *      allows you to find a complete list of fields
+/**     allows you to find a complete list of fields
  *      or find them by message.id
  */
 

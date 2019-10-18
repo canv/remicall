@@ -12,7 +12,8 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity //Make a table out of this class
+//Make a table out of this class
+@Entity
 public class Message {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
