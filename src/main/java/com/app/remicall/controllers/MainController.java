@@ -1,8 +1,10 @@
 package com.app.remicall.controllers;
 
 import com.app.remicall.domain.Message;
+import com.app.remicall.domain.User;
 import com.app.remicall.repositories.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,10 +31,11 @@ public class MainController {
     }
 
     @PostMapping("/main")
-    public String add(@RequestParam(name = "text") String text,
+    public String add(@AuthenticationPrincipal User user,
+                      @RequestParam(name = "text") String text,
                       @RequestParam(name = "tag") String tag,
                       Map<String, Object> model) {
-        Message message = new Message(text, tag);
+        Message message = new Message(text, tag, user);
         messageRepository.save(message);
 
         Iterable<Message> messages = messageRepository.findAll();
