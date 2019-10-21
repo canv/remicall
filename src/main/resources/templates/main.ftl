@@ -7,16 +7,16 @@
 </div>
 <div>
 <form method="post">
-        <input type="text" name="text" placeholder="Введите сообщение" />
-        <input type="text" name="tag" placeholder="Тэг">
+        <input type="text" name="text" placeholder="Input message" />
+        <input type="text" name="tag" placeholder="Tag">
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <button type="submit">Добавить</button>
+        <button type="submit">add</button>
 </form>
 </div>
-<div>Список сообщений</div>
+<div>Messages</div>
 <form method="get" action="/main">
-    <input type="text" name="filter" value="${filter!}">
-    <button type="submit">Найти</button>
+    <input type="text" name="filter" value="${filter!""}">
+    <button type="submit">find</button>
 </form>
     <#list messages as message>
     <div>
