@@ -1,6 +1,6 @@
 <#import "parts/common.ftl" as c>
 
-<@c.page>
+    <@c.page>
 List of users
 
 <table>
@@ -12,13 +12,13 @@ List of users
     </tr>
     </thread>
     <tbody>
-    <#list users as user>
-        <tr>
-            <td>${user.username}</td>
-            <td><#list user.roles as role>${role}<#sep>, </#list></td>
-            <td><a href="/user/${user.userId}">edit</a></td>
-        </tr>
-    </#list>
+        <#list users as user>
+            <tr>
+                <td>${user.username}</td>
+                <td><#list user.roles as role>${role}<#sep>, </#list></td>
+                <td><a href="/user/${user.userId}">edit</a></td>
+            </tr>
+        </#list>
     </tbody>
 </table>
-</@c.page>
+    </@c.page>
