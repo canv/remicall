@@ -1,6 +1,6 @@
 <#import "parts/common.ftl" as c>
 
-<@c.page>
+    <@c.page>
 <div>Hello, dude</div>
 <a href="/main">Main page</a>
-</@c.page>
+    </@c.page>
