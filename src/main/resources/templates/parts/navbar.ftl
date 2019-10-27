@@ -1,4 +1,6 @@
 <#include "security.ftl">
+<#import "login.ftl" as l>
+
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/">Remicall</a>
@@ -21,6 +23,7 @@
             </#if>
         </ul>
 
-        <div class="navbar-text">${name}</div>
+        <div class="navbar-text mr-3">${name}</div>
+        <@l.logout />
     </div>
 </nav>
