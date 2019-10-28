@@ -19,10 +19,6 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID userId;
 
-    private String username;
-    private String password;
-    private boolean active;
-
     //forms a table for storing roles
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     //the field will be stored in a another table for which we did not describe mapping
@@ -30,6 +26,13 @@ public class User implements UserDetails {
     //we want to store enum in String
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
+    private String username;
+    private String password;
+    private boolean active;
+
+    private String email;
+    private String activationCode;
 
     public boolean isAdmin() {
         return roles.contains(Role.ADMIN);
