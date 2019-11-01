@@ -1,3 +1,5 @@
 body{
     color: #113;
+    background-image: url(backgrounds/first_var.jpg);
+    opacity: .84
 }
