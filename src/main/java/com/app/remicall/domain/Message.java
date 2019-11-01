@@ -3,8 +3,10 @@ package com.app.remicall.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
@@ -16,7 +18,11 @@ public class Message {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
+    @NotBlank(message = "Need to fill for adding")
+    @Length(max = 2048, message = "Message too long")
     private String text;
+
+    @Length(max = 10, message = "Tag too long")
     private String tag;
 
     @ManyToOne(fetch = FetchType.EAGER)

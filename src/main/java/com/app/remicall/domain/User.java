@@ -2,10 +2,13 @@ package com.app.remicall.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
@@ -18,19 +21,25 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID userId;
+    private boolean active;
 
-    //forms a table for storing roles
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    //the field will be stored in a another table for which we did not describe mapping
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-    //we want to store enum in String
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
+    @NotBlank(message = "Username can't be empty")
     private String username;
-    private String password;
-    private boolean active;
 
+    @NotBlank(message = "Password can't be empty")
+    private String password;
+
+    @Transient//doesn't interact with DB
+    @NotBlank(message = "Password conformation can't be empty")
+    private String password2;
+
+    @Email(message = "Email isn't correct")
+    @NotBlank(message = "Email can't be empty")
     private String email;
     private String activationCode;
 
