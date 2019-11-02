@@ -39,7 +39,16 @@
                 </div>
             </#if>
         </div>
-</#if>
+        <div class="col-sm-4">
+            <div class="g-recaptcha"
+                 data-sitekey="6LeVusAUAAAAALDJgrn0B389zsxHDHxmLJuhVzwZ"></div>
+            <#if captchaError??>
+                <div class="alert alert-danger row" role="alert">
+                    ${captchaError}
+                </div>
+            </#if>
+        </div>
+    </#if>
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
     <button type="submit" class="btn btn-dark">
         <#if isRegisterForm>
