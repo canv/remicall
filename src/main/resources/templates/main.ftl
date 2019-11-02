@@ -55,7 +55,7 @@
 </div>
 <div class=card-columns>
     <#list messages as message>
-        <div class="card my-3" style="width: 18rem;">
+        <div class="card text-white my-2 bg-secondary" style="width: 18rem;">
             <#if message.filename??>
                 <img class="card-img-top" width="200" src="/img/${message.filename}">
             </#if>
@@ -64,7 +64,7 @@
                 <span>${message.text}</span>
                 <i>${message.tag}</i>
             </div>
-            <div class="card-footer text-muted">
+            <div class="card-footer text-white-muted">
                 ${message.authorName}
             </div>
         </div>

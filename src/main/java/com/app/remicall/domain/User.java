@@ -34,10 +34,6 @@ public class User implements UserDetails {
     @NotBlank(message = "Password can't be empty")
     private String password;
 
-    @Transient//doesn't interact with DB
-    @NotBlank(message = "Password conformation can't be empty")
-    private String password2;
-
     @Email(message = "Email isn't correct")
     @NotBlank(message = "Email can't be empty")
     private String email;
