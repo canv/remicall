@@ -11,9 +11,9 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 @NoArgsConstructor
-//Make a table out of this class
 @Entity
 public class Message {
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
