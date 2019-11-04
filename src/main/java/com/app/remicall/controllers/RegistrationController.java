@@ -44,7 +44,8 @@ public class RegistrationController {
                           @RequestParam("g-recaptcha-response") String captchaResponce,
                           @Valid User user,
                           BindingResult bindingResult,
-                          Model model) {
+                          Model model
+    ){
         boolean isConfirmEmpty = StringUtils.isEmpty(passwordConfirm);
         String url = String.format(CAPTCHA_URL, recaptchaSecret, captchaResponce);
         CaptchaResponseDto responseDto = restTemplate.postForObject
@@ -75,8 +76,9 @@ public class RegistrationController {
     }
 
     @GetMapping("/activate/{code}")
-    public String activate(Model model, @PathVariable String code) {
-
+    public String activate(Model model,
+                           @PathVariable String code
+    ){
         boolean isActivated = userService.activateUser(code);
         if (isActivated) {
             model.addAttribute("messageType", "success");

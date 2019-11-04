@@ -40,7 +40,8 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(@RequestParam(required = false, defaultValue = "") String filter,
-                       Model model) {
+                       Model model
+    ){
         Iterable<Message> messages = messageRepository.findAll();
 
         if (filter != null && !filter.isEmpty()) {
@@ -85,14 +86,14 @@ public class MainController {
 
         Iterable<Message> messages = messageRepository.findAll();
         model.addAttribute("messages", messages);
-
         return "main";
     }
 
-    @GetMapping("/user-messages/{user")
+    @GetMapping("/user-messages/{user}")
     public String userMessages(@AuthenticationPrincipal User currentUser,
                                @PathVariable User user,
-                               Model model){
+                               Model model
+    ){
         Set<Message> messages = user.getMessages();
         model.addAttribute("messages",messages);
         model.addAttribute("isCurrentUser", currentUser.equals(user));
