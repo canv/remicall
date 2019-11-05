@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 public class Message {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotBlank(message = "Need to fill for adding")
