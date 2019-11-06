@@ -8,10 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.util.Collection;
-import java.util.Objects;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Getter
 @Setter
@@ -44,6 +41,21 @@ public class User implements UserDetails {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private Set<Message> messages;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_subscriptions",
+            joinColumns = { @JoinColumn (name = "channel_id")},
+            inverseJoinColumns = { @JoinColumn (name = "subscriber_id")})
+    private Set<User> subscribers = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_subscriptions",
+            joinColumns = { @JoinColumn (name = "subscriber_id")},
+            inverseJoinColumns = { @JoinColumn (name = "channel_id")})
+    private Set<User> subscriptions = new HashSet<>();
+
 
     public boolean isAdmin() {
         return roles.contains(Role.ADMIN);
