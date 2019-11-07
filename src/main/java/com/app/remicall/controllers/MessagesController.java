@@ -29,10 +29,14 @@ public class MessagesController {
                                @PathVariable User user,
                                @RequestParam(required = false) Message message,
                                Model model
-    ){
+    ) {
         Set<Message> messages = user.getMessages();
-        model.addAttribute("messages",messages);
-        model.addAttribute("message",message);
+        model.addAttribute("subscriptionsCount", user.getSubscriptions().size());
+        model.addAttribute("subscribersCount", user.getSubscribers().size());
+        model.addAttribute("isSubscriber", user.getSubscribers().contains(currentUser));
+        model.addAttribute("userChannel", user);
+        model.addAttribute("messages", messages);
+        model.addAttribute("message", message);
         model.addAttribute("isCurrentUser", currentUser.equals(user));
         return "userMessages";
     }
@@ -45,12 +49,12 @@ public class MessagesController {
                                 @RequestParam("tag") String tag,
                                 @RequestParam("file") MultipartFile file
     ) throws IOException {
-        if(message.getAuthor().equals(currentUser)){
+        if (message.getAuthor().equals(currentUser)) {
             if (!StringUtils.isEmpty(text))
                 message.setText(text);
             if (!StringUtils.isEmpty(tag))
                 message.setTag(tag);
-            messageService.saveFile(message,file);
+            messageService.saveFile(message, file);
             messageService.saveMessage(message);
         }
         return "redirect:/user-messages/" + user;

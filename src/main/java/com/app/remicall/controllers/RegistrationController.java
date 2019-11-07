@@ -45,14 +45,14 @@ public class RegistrationController {
                           @Valid User user,
                           BindingResult bindingResult,
                           Model model
-    ){
+    ) {
         boolean isConfirmEmpty = StringUtils.isEmpty(passwordConfirm);
         String url = String.format(CAPTCHA_URL, recaptchaSecret, captchaResponce);
         CaptchaResponseDto responseDto = restTemplate.postForObject
                 (url, Collections.emptyList(), CaptchaResponseDto.class);
 
-        if(!responseDto.isSuccess())
-            model.addAttribute("captchaError","Fill captcha");
+        if (!responseDto.isSuccess())
+            model.addAttribute("captchaError", "Fill captcha");
 
         if (isConfirmEmpty)
             model.addAttribute("password2Error", "Password conformation can't be empty");
@@ -78,7 +78,7 @@ public class RegistrationController {
     @GetMapping("/activate/{code}")
     public String activate(Model model,
                            @PathVariable String code
-    ){
+    ) {
         boolean isActivated = userService.activateUser(code);
         if (isActivated) {
             model.addAttribute("messageType", "success");

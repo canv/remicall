@@ -59,7 +59,7 @@ public class MainController {
             model.addAttribute("message", message);
         } else {
             messageService.saveFile(message, file);
-            model.addAttribute("message",null);
+            model.addAttribute("message", null);
             messageService.saveMessage(message);
         }
 
