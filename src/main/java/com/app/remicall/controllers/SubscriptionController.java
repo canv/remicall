@@ -34,16 +34,17 @@ public class SubscriptionController {
     }
 
     @GetMapping("{type}/{user}/list")
-    public String userSubList(@PathVariable User user,
-                              @PathVariable String type,
-                              Model model) {
+    public String userList(Model model,
+                           @PathVariable User user,
+                           @PathVariable String type
+    ) {
         model.addAttribute("userChannel", user);
         model.addAttribute("type", type);
 
         if ("subscriptions".equals(type))
-            model.addAttribute("user", user.getSubscriptions());
+            model.addAttribute("users", user.getSubscriptions());
         else if ("subscribers".equals(type))
-            model.addAttribute("user", user.getSubscribers());
+            model.addAttribute("users", user.getSubscribers());
 
         return "subscriptions";
     }
