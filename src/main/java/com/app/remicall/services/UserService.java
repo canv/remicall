@@ -4,6 +4,7 @@ import com.app.remicall.domain.Role;
 import com.app.remicall.domain.User;
 import com.app.remicall.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,6 +25,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Value("${hostname}")
+    private String hostname;
 
     @Override
     public UserDetails loadUserByUsername(String username)
@@ -55,8 +59,10 @@ public class UserService implements UserDetailsService {
                     "Hi, %s! \n" +
                     "Welcome to Remicall. \n" +
                     "Follow the link to complete registration: http://" +
-                    "localhost:8080/activate/%s",
-                    user.getUsername(), user.getActivationCode()
+                    "%s/activate/%s",
+                    user.getUsername(),
+                    hostname,
+                    user.getActivationCode()
             );
             mailSender.send(user.getEmail(),"Activation code", message);
         }
