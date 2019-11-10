@@ -18,24 +18,24 @@
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <div class="card-title">Subscriptions</div>
-                    <h3 class="card-text">
-                        <a href="/user/subscriptions/${userChannel.userId}/list">
+                    <h4 class="card-text">Subscriptions
+                        <a  class="badge badge-primary"
+                            href="/user/subscriptions/${userChannel.userId}/list">
                             ${subscriptionsCount}
                         </a>
-                    </h3>
+                    </h4>
                 </div>
             </div>
         </div>
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <div class="card-title">Subscribers</div>
-                    <h3 class="card-text">
-                        <a href="/user/subscribers/${userChannel.userId}/list">
+                    <h4 class="card-text">Subscribers
+                        <a  class="badge badge-primary"
+                            href="/user/subscribers/${userChannel.userId}/list">
                             ${subscribersCount}
                         </a>
-                    </h3>
+                    </h4>
                 </div>
             </div>
         </div>

@@ -8,13 +8,18 @@
             </#if>
             <div class="m-2">
                 <#if isAdmin><b>${message.id}</b></#if>
-                <span>${message.text}</span>
-                <i>${message.tag}</i>
+                <h5>
+                    <span>${message.text}</span>
+                    <i>${message.tag}</i>
+                </h5>
             </div>
             <div class="card-footer text-white-muted">
-                <a href="/user-messages/${message.author.userId}">${message.authorName}</a>
+                <a  class="badge badge-pill badge-light"
+                    href="/user-messages/${message.author.userId}">
+                        ${message.authorName}
+                </a>
                 <#if message.author.userId == currentUserId>
-                    <a  class="btn btn-info"
+                    <a  class="badge badge-pill badge-info"
                         href="/user-messages/${message.author.userId}?message=${message.id}">
                         Edit
                     </a>
