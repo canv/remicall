@@ -15,7 +15,7 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
 
 </head>
-<body>
+<body class="text-secondary">
     <#include "navbar.ftl">
     <div class="container mt-2">
         <#nested>
