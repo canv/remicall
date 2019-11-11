@@ -31,8 +31,8 @@
         </div>
         <div class="form-group row col-sm-4">
             <input  class="form-control ${(emailError??)?string('is-invalid', '')}"
-                    type="email" name="email" placeholder="ex@mp.le"/
-                    value="<#if user??>${user.email}</#if>">
+                    type="email" name="email" placeholder="ex@mp.le"
+                    value="<#if user??>${user.email}</#if>" />
             <#if emailError??>
                 <div class="invalid-feedback">
                     ${emailError}
