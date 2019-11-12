@@ -1,7 +1,7 @@
 package com.app.remicall.controllers;
 
 import com.app.remicall.domain.User;
-import com.app.remicall.services.UserService;
+import com.app.remicall.services.SubscribeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SubscriptionController {
 
     @Autowired
-    private UserService userService;
+    private SubscribeService subscribeService;
 
     @GetMapping("subscribe/{user}")
     public String subscribe(@PathVariable User user,
                             @AuthenticationPrincipal User currentUser
     ) {
-        userService.subscribe(currentUser, user);
+        subscribeService.subscribe(currentUser, user);
         return "redirect:/user-messages/" + user.getUserId();
     }
 
@@ -29,7 +29,7 @@ public class SubscriptionController {
     public String unsubscribe(@PathVariable User user,
                               @AuthenticationPrincipal User currentUser
     ) {
-        userService.unsubscribe(currentUser, user);
+        subscribeService.unsubscribe(currentUser, user);
         return "redirect:/user-messages/" + user.getUserId();
     }
 

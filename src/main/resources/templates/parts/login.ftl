@@ -32,7 +32,7 @@
         <div class="form-group row col-sm-4">
             <input  class="form-control ${(emailError??)?string('is-invalid', '')}"
                     type="email" name="email" placeholder="ex@mp.le"
-                    value="<#if user??>${user.email}</#if>" />
+                    value="<#if user??>${user.email}</#if>"/>
             <#if emailError??>
                 <div class="invalid-feedback">
                     ${emailError}
@@ -49,7 +49,7 @@
             </#if>
         </div>
     </#if>
-    <input type="hidden" name="_csrf" value="${_csrf.token}" />
+    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
     <button type="submit" class="btn btn-dark">
         <#if isRegisterForm>
             Create <#else> Login!
@@ -65,7 +65,7 @@
 
 <#macro logout>
 <form action="/logout" method="post">
-    <input type="hidden" name="_csrf" value="${_csrf.token}" />
+    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
     <button type="submit" class="btn btn-primary btn-sm">
         <#if user??>Sign out<#else>Log in</#if>
     </button>

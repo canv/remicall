@@ -6,7 +6,7 @@
     <div class="form-group col-md-6">
         <form method="get" action="/main" class="form-inline">
             <input  type="text" name="filter" class="form-control"
-                    value="${filter?ifExists}" placeholder="tag" />
+                    value="${filter?ifExists}" placeholder="tag"/>
             <button type="submit" class="btn btn-primary ml-2">find by tag</button>
         </form>
     </div>
@@ -25,7 +25,7 @@
                     <input  class="form-control ${(textError??)?string('is-invalid', '')}"
                             type="text" name="text"
                             value="<#if message??>${message.text}</#if>"
-                            placeholder="Input message" />
+                            placeholder="Input message"/>
                     <#if textError??>
                         <div class="invalid-feedback">
                             ${textError}
@@ -36,7 +36,7 @@
                     <input  class="form-control"
                             type="text" name="tag"
                             value="<#if message??>${message.tag}</#if>"
-                            placeholder="Tag" />
+                            placeholder="Tag"/>
                     <#if tagError??>
                         <div class="invalid-feedback">
                             ${tagError}
@@ -45,11 +45,11 @@
                 </div>
                 <div class="col">
                     <div class="custom-file">
-                        <input type="file" name="file" id="customFile" />
+                        <input type="file" name="file" id="customFile"/>
                         <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
                 </div>
-                <input  class="form-control"type="hidden" name="_csrf" value="${_csrf.token}" />
+                <input  class="form-control"type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">add</button>
                 </div>

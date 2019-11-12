@@ -9,7 +9,7 @@
             <div class="form-group">
                 <input  class="form-control ${(textError??)?string('is-invalid', '')}"
                         type="text" name="text" value="<#if message??>${message.text}</#if>"
-                        placeholder="Input message" />
+                        placeholder="Input message"/>
                 <#if textError??>
                     <div class="invalid-feedback">
                         ${textError}
@@ -19,7 +19,7 @@
             <div class="form-group">
                 <input  class="form-control"
                         type="text" name="tag" value="<#if message??>${message.tag}</#if>"
-                        placeholder="Tag" />
+                        placeholder="Tag"/>
                 <#if tagError??>
                     <div class="invalid-feedback">
                         ${tagError}
@@ -32,9 +32,9 @@
                     <label class="custom-file-label" for="customFile">Choose file</label>
                 </div>
             </div>
-            <input  class="form-control" type="hidden" name="_csrf" value="${_csrf.token}" />
+            <input  class="form-control" type="hidden" name="_csrf" value="${_csrf.token}"/>
             <input  class="form-control" type="hidden" name="id"
-                    value="<#if message??>${message.id}</#if>" />
+                    value="<#if message??>${message.id}</#if>" =/>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Safe message</button>
             </div>
