@@ -32,7 +32,7 @@ public class MainController {
     public String main(@RequestParam(required = false, defaultValue = "") String filter,
                        Model model
     ) {
-        Iterable<Message> messages = messageService.findAllMessages();
+        Iterable<Message> messages;
 
         if (filter != null && !filter.isEmpty())
             messages = messageService.findMessageByTag(filter);
@@ -59,8 +59,8 @@ public class MainController {
             model.addAttribute("message", message);
         } else {
             messageService.saveFile(message, file);
-            model.addAttribute("message", null);
             messageService.saveMessage(message);
+            model.addAttribute("message", null);
         }
 
         Iterable<Message> messages = messageService.findAllMessages();
