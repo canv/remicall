@@ -21,9 +21,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @WithUserDetails("user")
 @TestPropertySource("/application-test.properties")
-@Sql(value = {"/testdb/create_user_before.sql"},
+@Sql(value = {"/testdb/create_user_before.sql", "/testdb/messages_list_before.sql"},
     executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-@Sql(value = {"/testdb/remove_user_after.sql"},
+@Sql(value = {"/testdb/messages_list_after.sql", "/testdb/remove_user_after.sql"},
     executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class MainControllerTest {
 
@@ -31,20 +31,21 @@ public class MainControllerTest {
     private MockMvc mock;
 
     //try
-    @Test
-    public void mainPageTest() throws Exception {
-        this.mock.perform(get("/main"))
-                .andDo(print())
-                .andExpect(authenticated())
-                .andExpect(xpath("//div[@id='navbarSupportedContent']/div")
-                        .string("user"));
-    }
+//    @Test
+//    public void mainPageTest() throws Exception {
+//        this.mock.perform(get("/main"))
+//                .andDo(print())
+//                .andExpect(authenticated())
+//                .andExpect(xpath("//div[@id='navbarSupportedContent']/div")
+//                        .string("user"));
+//    }
 
     @Test
     public void messageListTest() throws Exception {
         this.mock.perform(get("/main"))
                 .andDo(print())
                 .andExpect(authenticated())
-                .andExpect(xpath("").nodeCount(0));
+                .andExpect(xpath("//div[@id='message-list']/div")
+                        .nodeCount(4));
     }
 }
