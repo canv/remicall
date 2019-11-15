@@ -25,7 +25,7 @@
                     <input  class="form-control ${(textError??)?string('is-invalid', '')}"
                             type="text" name="text"
                             value="<#if message??>${message.text}</#if>"
-                            placeholder="Input message"/>
+                            placeholder="Add message"/>
                     <#if textError??>
                         <div class="invalid-feedback">
                             ${textError}

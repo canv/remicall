@@ -1,2 +1,2 @@
-delete from user_roles
-delete from user_data
+delete from user_role;
+delete from user_data;
