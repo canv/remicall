@@ -19,7 +19,7 @@
             <div class="form-group">
                 <input  class="form-control"
                         type="text" name="tag" value="<#if message??>${message.tag}</#if>"
-                        placeholder="Tag"/>
+                        placeholder="Tag" />
                 <#if tagError??>
                     <div class="invalid-feedback">
                         ${tagError}
