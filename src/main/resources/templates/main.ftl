@@ -49,7 +49,7 @@
                         <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
                 </div>
-                <input  class="form-control"type="hidden" name="_csrf" value="${_csrf.token}"/>
+                <input  class="form-control" type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">add</button>
                 </div>
