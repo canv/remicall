@@ -1,4 +1,4 @@
-package com.app.remicall;
+package com.app.remicall.controllers;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -63,7 +63,7 @@ public class MainControllerTest {
     }
 
     @Test
-    public void addMessageToList() throws Exception {
+    public void addMessageToListTest() throws Exception {
         MockHttpServletRequestBuilder multipart = multipart("/main")
                 .file("file","111".getBytes())
                 .param("text","test-test")

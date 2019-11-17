@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface MailSenderService {
-    boolean sendActivationMessage(User user);
+    void sendActivationMessage(User user);
 }

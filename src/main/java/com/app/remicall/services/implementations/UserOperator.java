@@ -46,7 +46,8 @@ public class UserOperator implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         userRepository.save(user);
-        return mailSenderService.sendActivationMessage(user);
+        mailSenderService.sendActivationMessage(user);
+        return true;
     }
 
     @Override
