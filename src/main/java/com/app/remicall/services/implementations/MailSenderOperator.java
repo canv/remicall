@@ -22,7 +22,7 @@ public class MailSenderOperator implements MailSenderService {
     private String hostname;
 
     @Override
-    public boolean sendActivationMessage(User user) {
+    public void sendActivationMessage(User user) {
         if(!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format(
                     "Hi, %s! \n" +
@@ -34,8 +34,7 @@ public class MailSenderOperator implements MailSenderService {
                     user.getActivationCode()
             );
             sendEmail(user.getEmail(),"Activation code", message);
-        } else return false;
-        return true;
+        } //else throw new UserActivateException();
     }
 
     private void sendEmail(String emailTo, String subject, String message){

@@ -1,4 +1,4 @@
-package com.app.remicall;
+package com.app.remicall.configurations;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,7 +29,7 @@ public class LoginTest {
     private final String hostname = "localhost";
 
     @Test
-    public void contextLoad() throws Exception {
+    public void contextLoadTest() throws Exception {
         this.mock.perform(get("/"))
                 .andDo(print())
                 .andExpect(status().isOk())//status200
@@ -57,7 +57,7 @@ public class LoginTest {
     }
 
     @Test
-    public void badCredentials() throws Exception {
+    public void badCredentialsTest() throws Exception {
         this.mock.perform(post("/login").param("user","badPass"))
                 .andDo(print())
                 .andExpect(status().isForbidden()); // status403
