@@ -1,8 +1,10 @@
-package com.app.remicall.services;
+package com.app.remicall;
 
 import com.app.remicall.domain.Role;
 import com.app.remicall.domain.User;
 import com.app.remicall.repositories.UserRepository;
+import com.app.remicall.services.MailSenderService;
+import com.app.remicall.services.UserService;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
@@ -65,7 +67,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void activateUserTest(){
+    public void activateUserTest() {
         User testUser = new User();
         testUser.setActivationCode("pre-activate");
         doReturn(testUser)
@@ -80,7 +82,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void activateUserFailTest(){
+    public void activateUserFailTest() {
         boolean isUserActivated = userService.activateUser("true-activate");
 
         Assert.assertFalse(isUserActivated);

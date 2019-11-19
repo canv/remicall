@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
 public class MailSenderOperator implements MailSenderService {
 
     @Autowired
-    private JavaMailSender javaMailSendermailSender;
+    private JavaMailSender javaMailSender;
 
     @Value("${spring.mail.username}")
     private String username;
@@ -45,6 +45,6 @@ public class MailSenderOperator implements MailSenderService {
         mailMessage.setSubject(subject);
         mailMessage.setText(message);
 
-        javaMailSendermailSender.send(mailMessage);
+        javaMailSender.send(mailMessage);
     }
 }
