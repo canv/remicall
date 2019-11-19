@@ -1,4 +1,4 @@
-package com.app.remicall.configurations;
+package com.app.remicall;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,8 +1,10 @@
-package com.app.remicall.services;
+package com.app.remicall;
 
 import com.app.remicall.domain.Role;
 import com.app.remicall.domain.User;
 import com.app.remicall.repositories.UserRepository;
+import com.app.remicall.services.MailSenderService;
+import com.app.remicall.services.UserService;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
@@ -37,15 +39,15 @@ public class UserServiceTest {
     @Test
     public void addUserTest() {
         User testUser = new User();
-//        testUser.setEmail("ex@mp.le");
+        testUser.setEmail("ex@mp.le");
 
         boolean isUserCreated = userService.addUser(testUser);
 
         Assert.assertTrue(isUserCreated);
         Assert.assertNotNull(testUser.getActivationCode());
         Assert.assertTrue(CoreMatchers.is(testUser.getRoles()).matches(Collections.singleton(Role.USER)));
-//        verify(userRepository, times(1)).save(testUser);
-//        verify(mailSenderService, times(1)).sendActivationMessage(testUser);
+        verify(userRepository, times(1)).save(testUser);
+        verify(mailSenderService, times(1)).sendActivationMessage(testUser);
     }
 
     @Test
@@ -65,7 +67,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void activateUserTest(){
+    public void activateUserTest() {
         User testUser = new User();
         testUser.setActivationCode("pre-activate");
         doReturn(testUser)
@@ -80,7 +82,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void activateUserFailTest(){
+    public void activateUserFailTest() {
         boolean isUserActivated = userService.activateUser("true-activate");
 
         Assert.assertFalse(isUserActivated);
