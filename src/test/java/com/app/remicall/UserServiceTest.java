@@ -16,7 +16,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Collections;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.mockito.Mockito.*;
 
@@ -87,6 +88,20 @@ public class UserServiceTest {
 
         Assert.assertFalse(isUserActivated);
         verify(userRepository, times(0))
+                .save(ArgumentMatchers.any(User.class));
+    }
+
+    @Test
+    public void updateUserRolesTest() {
+        User testUser = new User();
+        //testUser.setRoles(new Set<Role>());
+        Map<String, String> roles = new HashMap<>();
+        roles.put("USER", "-");
+        roles.put("ADMIN", "-");
+
+        userService.updateUserRoles(testUser, "testName", roles);
+
+        verify(userRepository, times(1))
                 .save(ArgumentMatchers.any(User.class));
     }
 }
