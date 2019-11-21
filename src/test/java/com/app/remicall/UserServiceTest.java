@@ -16,7 +16,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Collections;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.mockito.Mockito.*;
 
@@ -88,5 +89,43 @@ public class UserServiceTest {
         Assert.assertFalse(isUserActivated);
         verify(userRepository, times(0))
                 .save(ArgumentMatchers.any(User.class));
+    }
+
+    @Test
+    public void updateUserRolesTest() {
+        User testUser = new User();
+        String testName = "testName";
+        testUser.setRoles(new HashSet<Role>(Collections.singleton(Role.USER)));
+        HashSet<Role> testRoles = new HashSet<>();
+        testRoles.add(Role.USER);
+        testRoles.add(Role.ADMIN);
+        Map<String, String> roles = new HashMap<>();
+        roles.put("USER", "-");
+        roles.put("ADMIN", "-");
+
+        userService.updateUserRoles(testUser, testName, roles);
+
+        Assert.assertEquals(testName, testUser.getUsername());
+        Assert.assertEquals(testRoles, testUser.getRoles());
+        verify(userRepository, times(1))
+                .save(ArgumentMatchers.any(User.class));
+    }
+
+    @Test
+    public void updateUserProfileSuccessTest() {
+        User testUser = new User();
+        testUser.setEmail("current@e.mail");
+        testUser.setPassword("currentPass");
+        String testEmail = "test@e.mail";
+        String testPassword = "testPass";
+
+        userService.updateUserProfile(testUser,testPassword,testEmail);
+
+        Assert.assertNotNull(testUser.getActivationCode());
+        Assert.assertEquals(passwordEncoder.encode(testPassword), testUser.getPassword());
+        verify(userRepository, times(1))
+                .save(ArgumentMatchers.any(User.class));
+        verify(mailSenderService, times(1))
+                .sendActivationMessage(ArgumentMatchers.any(User.class));
     }
 }
