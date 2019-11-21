@@ -78,8 +78,9 @@ public class UserOperator implements UserService {
     public void updateUserProfile(User user, String password, String newEmail) {
         String currentEmail = user.getEmail();
 
-        boolean isEmailChanged = (newEmail != null && !newEmail.equals(currentEmail))
-                || (currentEmail != null && !currentEmail.equals(newEmail));
+        boolean isEmailChanged = (newEmail != null
+                && currentEmail != null
+                && !currentEmail.equals(newEmail));
 
         if (isEmailChanged) {
             user.setEmail(newEmail);
@@ -87,7 +88,7 @@ public class UserOperator implements UserService {
                 user.setActivationCode(UUID.randomUUID().toString());
         }
 
-        if(StringUtils.isEmpty(password))
+        if(!StringUtils.isEmpty(password))
             user.setPassword(passwordEncoder.encode(password));
         userRepository.save(user);
 
